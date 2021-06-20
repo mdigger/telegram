@@ -33,9 +33,10 @@ var Client = &http.Client{
 
 // Задает форматирование сообщения
 const (
-	TypeNone     byte = iota // простой текст
-	TypeMarkdown             // в формате Markdown
-	TypeHTML                 // в формате HTML
+	TypeNone       byte = iota // простой текст
+	TypeMarkdown               // в формате Markdown
+	TypeMarkdownV2             // расширенный формат Markdown
+	TypeHTML                   // в формате HTML
 )
 
 // Bot описывает бота для Telegram. В качестве значения задается
@@ -50,6 +51,8 @@ func (b Bot) Send(chatID int64, text string, format byte) error {
 	switch format {
 	case TypeMarkdown:
 		params.Set("parse_mode", "Markdown")
+	case TypeMarkdownV2:
+		params.Set("parse_mode", "MarkdownV2")
 	case TypeHTML:
 		params.Set("parse_mode", "HTML")
 	}
