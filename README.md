@@ -6,12 +6,12 @@
 4. Далее, все просто:
     ```golang
     // initializing new chat bot send function
-    var chatBot = telegram.NewChatBot(
+    send := telegram.New(
         "123456789:AABB-010203040506070809", // token
         -100000000,                          // chat ID
         telegram.TypeMarkdown)               // message format
     // send message to telegram chat
-    if err := chatBot("*Hi!*"); err != nil {
-        log.Fatal(err)
+    if err := send("*Hi!*"); err != nil {
+        panic(err)
     }
     ```
